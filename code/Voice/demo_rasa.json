@@ -176,6 +176,96 @@
             "entity": "item"
           }
          ]
+       },
+      {
+        "text": "抓角落里的椅子",
+        "intent": "catch",
+        "entities": [
+           {
+            "start": 1,
+            "end": 4,
+            "value": "角落里",
+            "entity": "location"
+          },
+          {
+            "start": 5,
+            "end": 7,
+            "value": "椅子",
+            "entity": "item"
+          }
+         ]
+       },
+      {
+        "text": "桌子上的水杯",
+        "intent": "catch",
+        "entities": [
+           {
+            "start": 0,
+            "end": 3,
+            "value": "桌子上",
+            "entity": "location"
+          },
+          {
+            "start": 5,
+            "end": 7,
+            "value": "椅子",
+            "entity": "item"
+          }
+         ]
+       },
+      {
+        "text": "抓蓝色的球",
+        "intent": "catch",
+        "entities": [
+           {
+            "start": 1,
+            "end": 3,
+            "value": "蓝色",
+            "entity": "color"
+          },
+          {
+            "start": 4,
+            "end": 5,
+            "value": "球",
+            "entity": "item"
+          }
+         ]
+       },
+      {
+        "text": "抓那个蓝色的球",
+        "intent": "catch",
+        "entities": [
+           {
+            "start": 3,
+            "end": 5,
+            "value": "蓝色",
+            "entity": "color"
+          },
+          {
+            "start": 6,
+            "end": 7,
+            "value": "球",
+            "entity": "item"
+          }
+         ]
+       },
+      {
+        "text": "抓那个蓝色的球",
+        "intent": "catch",
+        "entities": [
+           {
+            "start": 3,
+            "end": 5,
+            "value": "蓝色",
+            "entity": "color"
+          },
+          {
+            "start": 6,
+            "end": 7,
+            "value": "球",
+            "entity": "item"
+          }
+         ]
        }
     ]
   }

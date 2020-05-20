@@ -21,6 +21,8 @@
 #  可添加语种或方言，添加后会显示该方言的参数值
 #  错误码链接：https://www.xfyun.cn/document/error-code （code返回错误码时必看）
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+import os
+import ssl
 import websocket
 import datetime
 import hashlib
@@ -29,7 +31,6 @@ import hmac
 import json
 from urllib.parse import urlencode
 import time
-import ssl
 from wsgiref.handlers import format_date_time
 from datetime import datetime
 from time import mktime
@@ -41,6 +42,10 @@ from rasa_nlu import config
 STATUS_FIRST_FRAME = 0  # 第一帧的标识
 STATUS_CONTINUE_FRAME = 1  # 中间帧标识
 STATUS_LAST_FRAME = 2  # 最后一帧的标识
+
+speech = "test.m4a"  # 音频文件
+content = ""  # 音频转化为的文本
+keywords = []  # 关键词集合
 
 
 class Ws_Param(object):
@@ -91,7 +96,7 @@ class Ws_Param(object):
 
 
 wsParam = Ws_Param(APPID='5eace464', APIKey='009197d57d8f8718b4497741e8499141',
-                   APISecret='e185514969c98e57b5423110a2aa8a4f', AudioFile=r'./tiger.pcm')
+                   APISecret='e185514969c98e57b5423110a2aa8a4f', AudioFile=r'./test.pcm')
 
 
 # 收到websocket消息的处理
@@ -106,10 +111,10 @@ def on_message(ws, message):
         else:
             data = json.loads(message)["data"]["result"]["ws"]
             # print(data)
-            result = ""
             for i in data:
                 for w in i["cw"]:
-                    result += w["w"]
+                    global content
+                    content += w["w"]
                     print(w["w"], end='')
             # print("sid:%s call success!,data is:%s" % (sid, json.dumps(data, ensure_ascii=False)))
             # print(json.dumps(data, ensure_ascii=False))
@@ -181,21 +186,29 @@ def train_first():
     return interpreter
 
 
-if __name__ == "__main__":
-    # 测试时候在此处正确填写相关信息即可运行
-    interpreter1 = train_first()
-    while 1:
-        instruction = input()
-        message = interpreter1.parse(instruction)
-        print(message)
-    '''
-    time1 = datetime.now()
+def getSpeech(place):
+    # 获取音频文件，并且转化为pcm类型
+    os.system("ffmpeg -y -i %s -acodec pcm_s16le -f s16le -ac 1 -ar 16000 %s" % (place, place.replace("m4a", "pcm")))
+
+
+def speechToContent(place):
+    # 将语音流转化为文本
     websocket.enableTrace(False)
     wsUrl = wsParam.create_url()
     ws = websocket.WebSocketApp(wsUrl, on_message=on_message, on_error=on_error, on_close=on_close)
     ws.on_open = on_open
     ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
-    time2 = datetime.now()
-    print(time2-time1)
-    '''
 
+
+def getKeywords(content):
+    # 从文本中获取关键词集合
+    interpreter1 = train_first()
+    # 最后这里将会重复使用interpreter1，而不用多次训练
+    message = interpreter1.parse(content)
+    return message
+
+
+if __name__ == "__main__":
+    getSpeech(speech)
+    speechToContent(speech.replace("m4a", "pcm"))
+    print(getKeywords(content))
