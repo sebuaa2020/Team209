@@ -14,258 +14,79 @@
     ],
     "common_examples": [
       {
-        "text": "你好",
-        "intent": "greet",
+        "text": "前进。",
+        "intent": "forward",
         "entities": []
-      },
+       },
       {
-        "text": "你好吗",
-        "intent": "greet",
+        "text": "向前进。",
+        "intent": "forward",
         "entities": []
-      },
+       },
       {
-        "text": "早上好",
-        "intent": "greet",
+        "text": "向前走。",
+        "intent": "forward",
         "entities": []
-      },
+       },
       {
-        "text": "晚上好",
-        "intent": "greet",
+        "text": "向前。",
+        "intent": "forward",
         "entities": []
-      },
-      {
-        "text": "请抓取蓝色的水杯",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 3,
-            "end": 5,
-            "value": "蓝色",
-            "entity": "color"
-          },
-		  {
-            "start": 6,
-            "end": 8,
-            "value": "水杯",
-            "entity": "item"
-          }
-        ]
-      },
-      {
-        "text": "请抓取红色的水杯",
-        "intent": "catch",
-        "entities": [
-		  {
-            "start": 3,
-            "end": 5,
-            "value": "红色",
-            "entity": "color"
-          },
-          {
-            "start": 6,
-            "end": 8,
-            "value": "水杯",
-            "entity": "item"
-          }
-        ]
-      },
-      {
-        "text": "请抓取水杯",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 3,
-            "end": 5,
-            "value": "水杯",
-            "entity": "item"
-          }
-         ]
        },
       {
-        "text": "请抓取杯子",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 3,
-            "end": 5,
-            "value": "杯子",
-            "entity": "item"
-          }
-         ]
+        "text": "后退。",
+        "intent": "backward",
+        "entities": []
        },
       {
-        "text": "抓那个杯子",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 3,
-            "end": 5,
-            "value": "杯子",
-            "entity": "item"
-          }
-         ]
+        "text": "向后退。",
+        "intent": "backward",
+        "entities": []
        },
       {
-        "text": "抓取杯子",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 2,
-            "end": 4,
-            "value": "杯子",
-            "entity": "item"
-          }
-         ]
+        "text": "向后。",
+        "intent": "backward",
+        "entities": []
        },
       {
-        "text": "杯子",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 0,
-            "end": 2,
-            "value": "杯子",
-            "entity": "item"
-          }
-         ]
+        "text": "向后走。",
+        "intent": "backward",
+        "entities": []
        },
       {
-        "text": "水杯",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 0,
-            "end": 2,
-            "value": "水杯",
-            "entity": "item"
-          }
-         ]
+        "text": "左转。",
+        "intent": "left_turn",
+        "entities": []
        },
       {
-        "text": "抓水杯",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 1,
-            "end": 3,
-            "value": "水杯",
-            "entity": "item"
-          }
-         ]
+        "text": "向左转。",
+        "intent": "left_turn",
+        "entities": []
        },
       {
-        "text": "抓杯子",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 1,
-            "end": 3,
-            "value": "杯子",
-            "entity": "item"
-          }
-         ]
+        "text": "右转。",
+        "intent": "right_turn",
+        "entities": []
        },
       {
-        "text": "抓椅子",
-        "intent": "catch",
-        "entities": [
-          {
-            "start": 1,
-            "end": 3,
-            "value": "椅子",
-            "entity": "item"
-          }
-         ]
+        "text": "向右转。",
+        "intent": "right_turn",
+        "entities": []
        },
       {
-        "text": "抓角落里的椅子",
-        "intent": "catch",
-        "entities": [
-           {
-            "start": 1,
-            "end": 4,
-            "value": "角落里",
-            "entity": "location"
-          },
-          {
-            "start": 5,
-            "end": 7,
-            "value": "椅子",
-            "entity": "item"
-          }
-         ]
+        "text": "停下来。",
+        "intent": "stop",
+        "entities": []
        },
       {
-        "text": "桌子上的水杯",
-        "intent": "catch",
-        "entities": [
-           {
-            "start": 0,
-            "end": 3,
-            "value": "桌子上",
-            "entity": "location"
-          },
-          {
-            "start": 5,
-            "end": 7,
-            "value": "椅子",
-            "entity": "item"
-          }
-         ]
+        "text": "停。",
+        "intent": "stop",
+        "entities": []
        },
       {
-        "text": "抓蓝色的球",
-        "intent": "catch",
-        "entities": [
-           {
-            "start": 1,
-            "end": 3,
-            "value": "蓝色",
-            "entity": "color"
-          },
-          {
-            "start": 4,
-            "end": 5,
-            "value": "球",
-            "entity": "item"
-          }
-         ]
-       },
-      {
-        "text": "抓那个蓝色的球",
-        "intent": "catch",
-        "entities": [
-           {
-            "start": 3,
-            "end": 5,
-            "value": "蓝色",
-            "entity": "color"
-          },
-          {
-            "start": 6,
-            "end": 7,
-            "value": "球",
-            "entity": "item"
-          }
-         ]
-       },
-      {
-        "text": "抓那个蓝色的球",
-        "intent": "catch",
-        "entities": [
-           {
-            "start": 3,
-            "end": 5,
-            "value": "蓝色",
-            "entity": "color"
-          },
-          {
-            "start": 6,
-            "end": 7,
-            "value": "球",
-            "entity": "item"
-          }
-         ]
+        "text": "停下。",
+        "intent": "stop",
+        "entities": []
        }
     ]
   }
