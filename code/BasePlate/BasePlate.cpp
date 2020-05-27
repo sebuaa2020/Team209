@@ -70,33 +70,33 @@ int main(int argc, char** argv)
 		int cKey = GetCh();
 		if(cKey=='w')
 		{
-		  base.speed_x += linear_vel;
+		  base->speed_x += linear_vel;
 		} 
 		else if(cKey=='s')
 		{
-		  base.speed_x += -linear_vel;
+		  base->speed_x += -linear_vel;
 		} 
 		else if(cKey=='a')
 		{
-		  base.speed_y += linear_vel;
+		  base->speed_y += linear_vel;
 		}
 		else if(cKey=='d')
 		{
-		  base.speed_y += -linear_vel;
+		  base->speed_y += -linear_vel;
 		} 
 		else if(cKey=='q')
 		{
-		  base.rotate_z += angular_vel;
+		  base->rotate_z += angular_vel;
 		} 
 		else if(cKey=='e')
 		{
-		  base.rotate_z += -angular_vel;
+		  base->rotate_z += -angular_vel;
 		} 
 		else if(cKey==' ')
 		{
-		  base.speed_x = 0;
-		  base.speed_y = 0;
-		  base.rotate_z = 0;
+		  base->speed_x = 0;
+		  base->speed_y = 0;
+		  base->rotate_z = 0;
 		} 
 		else if(cKey=='x')
 		{
@@ -124,9 +124,9 @@ int main(int argc, char** argv)
 			rotate_z = angular_vel*k_vel;
 		if(rotate_z < -angular_vel*k_vel)
 			rotate_z = -angular_vel*k_vel;
-		base_cmd.linear.x = base.speed_x;
-		base_cmd.linear.y = base.speed_y;
-		base_cmd.angular.z = base.rotate_z;
+		base_cmd.linear.x = base->speed_x;
+		base_cmd.linear.y = base->speed_y;
+		base_cmd.angular.z = base->rotate_z;
 		cmd_vel_pub.publish(base_cmd);
 		printf(" - linear.x= %.2f linear.y= %.2f angular.z= %.2f \n",base_cmd.linear.x,base_cmd.linear.y,base_cmd.angular.z);
 	}
