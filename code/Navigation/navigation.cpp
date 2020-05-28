@@ -8,15 +8,20 @@
 #include <cstring>
 #include <sstream>
 
-#define map_pgm "/home/user/catkin_ws/src/maps/Software_Museum.pgm"
-#define map_yaml "/home/user/catkin_ws/src/maps/Software_Museum.yaml"
+#define map_pgm "/home/dell/demo_ws/src/wpb_home/wpb_home_tutorials/maps/Software_Museum.pgm"
+#define map_yaml "/home/dell/demo_ws/src/wpb_home/wpb_home_tutorials/maps/Software_Museum.yaml"
+#define waypoints "~/waypoints.xml"
 using namespace std;
 
 class Navigation {
 public:
     //添加导航点
     void add_point(){
-        check_map();
+        try {
+            check_map();
+        } catch(...) {
+            throw "the file doesn't exist";
+        }
         system("rm ~/waypoints.xml");
         int ret = system("gnome-terminal -x roslaunch waterplus_map_tools add_waypoint.launch");
         if (ret != -1 || ret != 127) {
@@ -38,7 +43,8 @@ public:
 
     //移动到指定导航点
     void goto_point(string name) {
-        string str = "rosrun waterplus_map_tools to_aimed_point " + name;
+        system("gnome-terminal -x roslaunch waterplus_map_tools wpb_home_nav_test.launch");
+        string str = "rosrun waterplus_map_tools wp_nav_test" + name;
         char * strc = new char[strlen(str.c_str()) + 1];
         strcpy(strc, str.c_str());
         int ret = system(strc);
@@ -47,6 +53,30 @@ public:
         } else {
             throw "command execute error";
         }
+    }
+
+    //修改某个导航点的名称
+    void change_num2name(string num, string name) {
+        string str = "sed -i s/\\<Name\\>" + num + "/\\<Name\\>" + name + "/g " + waypoints;
+        cout << str << endl;
+        char * strc = new char[strlen(str.c_str()) + 1];
+        strcpy(strc, str.c_str());
+        int ret = system(strc);
+        if (ret != -1 || ret != 127) {
+            cout << num + "航点名称被成功替换" << endl;
+        } else {
+            throw "command execute error";
+        }
+    }
+
+    //检查xml文件是否完好
+    void check_xml() {
+        fstream xml_file;
+        xml_file.open(waypoints, ios::in);
+        if (xml_file) {
+            cout << waypoints << "文件没有被创建！" << endl;
+            throw "the file doesn't exist";
+        } 
     }
 
     //检查地图文件是否完好
@@ -67,6 +97,8 @@ public:
 
     //手动控制+自适应蒙特卡洛定位
     void manual_handle() {
+        system("gnome-terminal -x roslaunch robot_sim_demo robot_spawn.launch");
+        system("gnome-terminal -x rosrun robot_sim_demo robot_keyboard_teleop.py");
         int ret = system("gnome-terminal -x roslaunch navigation_sim_demo amcl_demo.launch");
         if (ret != -1 || ret != 127) {
             cout << "AMCL定位程序已启动" << endl;
@@ -83,9 +115,7 @@ public:
 };
 
 int main() {
-    //add_point();
-    //goto("楼梯");
-    //manual_handle();
-    //goto("立牌");
+    Navigation navigation;
+    navigation.change_num2name("2", "ace");
     return 0;
 }
