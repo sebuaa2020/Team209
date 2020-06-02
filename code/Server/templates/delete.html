@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"><meta name="description"><meta name="keywords"><title>
+	北航嵌入式开发
+</title>
+
+<link rel="icon" href="images/head.jpg" type="image/x-icon">
+<link rel="shortcut icon" href="images/head.jpg" type="image/x-icon">
+<link href="css/normalize-3.0.2.css" rel="stylesheet" type="text/css">
+<link href="css/reset.css" rel="stylesheet" type="text/css">
+<link href="css/p121.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="dialogPlugin.js"></script>
+<style>
+.a{display:block; width:50%; height:35px; line-height:35px; background-color:#15b699; color:#FF0000; text-decoration:none; text-align:center; border-radius:8px; margin:10px auto 0;}
+</style>
+</head>
+
+<body background="images/login_bg.jpg">
+
+{% if warning == 1%}
+<a class="a" href="javascript:dialog_dialogShow('dialog_warning','输入有误!');">该用户名不存在</a>
+{% endif %}
+
+{% if warning == 2%}
+<a class="a" href="javascript:dialog_dialogShow('dialog_warning','输入有误!');">密码错误</a>
+{% endif %}
+
+<div class="p121-login-wrap">
+	<div class="p121-login-wrap-bg">
+    	<div class="p121-login">
+        	<div class="clearfix">
+                <div class="p121-login-left"><a href=""><img src="images/logo.jpg" width="80" height="80"></a></div>
+                <div class="p121-login-right fz16"><br><a href="login.html" style="color: white">放弃注销</a></div>
+            </div>
+            <div class="mtop20"></div>
+            <div class="p121-login-block fz18">
+                 <p></p>
+                 <form method="post">
+                    <div class="p121-login-block-yzm">
+                        <p>
+                        <label class="tit">账号</label>
+                            <input name="User" type="text" id="User" class="txt" placeholder="请输入用户名" required="required"/>
+                        </p>
+
+                        <p class="none">
+                            <label class="tit">密码</label>
+                            <input name="Pwd" type="password" maxlength="20" id="Pwd" class="txt" placeholder="请输入密码" required="required"/>
+                        </p>
+                    </div><br>
+                    <input type="submit" name="btnLogin" value="确认注销"  id="btnLogin" class="p121-login-btn">
+                 </form>
+            </div>
+
+            <div class="p121-login-footer" style="color: white">
+        	    <p>Copyright Beihang, All Rights Reserved<br>© 北航嵌不入小组 版权所有</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
