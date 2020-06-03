@@ -1,6 +1,10 @@
 ## 测试演示视频与代码
 
-语音交互测试视频：
+前端登陆/注册演示视频：
+
+https://bhpan.buaa.edu.cn:443/link/36EAFDB6C6BF82A169566681A90EBE36
+
+语音交互演示视频：
 
 https://bhpan.buaa.edu.cn:443/link/6504CB4D1045B4189F24460A5C8806C4
 

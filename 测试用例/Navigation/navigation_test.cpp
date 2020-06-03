@@ -8,6 +8,56 @@
 #include <cstring>
 #include <sstream>
 
+class Navigation_Test {
+public:
+    Navigation navigation;
+    
+    void 209T6_1_W() {
+        try {
+            navigation.check_map();
+            navigation.add_point();
+            cout << "209T6-1-W测试用例通过" << endl;
+        } catch(...) {
+            cout << "209T6-1-W测试用例未通过" << endl;
+        }
+    }
+
+    void 209T6_2_W() {
+        try {
+            navigation.check_map();
+            cout << "209T6-1-W测试用例通过" << endl;
+        } catch(...) {
+            navigation.add_point();
+            cout << "209T6-2-W测试用例通过" << endl;
+        }
+    }
+
+    void 209T6_4_W() {
+        try {
+            navigation.check_xml();
+            navigation.goto_point("hall");
+            cout << "209T6-3-W测试用例通过" << endl;
+        } catch(...) {
+            cout << "209T6-3-W测试用例未通过" << endl;
+        }
+    }
+
+    void 209T6_5_W() {
+        try {
+            navigation.check_xml();
+            navigation.goto_point("start");
+            cout << "209T6-3-W测试用例未通过" << endl;
+        } catch(...) {
+            cout << "209T6-3-W测试用例通过" << endl;
+        }
+    }
+}
+
 int main() {
-    system("gnome-terminal -x roslaunch robot_sim_demo robot_spawn.launch");
+    Navigation_Test test;
+    test.209T6_1_W();
+    test.209T6_2_W();
+    test.209T6_4_W();
+    test.209T6_5_W();
+    return 0;
 }
