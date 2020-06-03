@@ -17,11 +17,11 @@ class Navigation {
 public:
     //添加导航点
     void add_point(){
-        try {
-            check_map();
-        } catch(...) {
-            throw "the file doesn't exist";
-        }
+        // try {
+        //     check_map();
+        // } catch(...) {
+        //     throw "the file doesn't exist";
+        // }
         system("rm ~/waypoints.xml");
         int ret = system("gnome-terminal -x roslaunch waterplus_map_tools add_waypoint.launch");
         if (ret != -1 || ret != 127) {
@@ -44,7 +44,10 @@ public:
     //移动到指定导航点
     void goto_point(string name) {
         system("gnome-terminal -x roslaunch waterplus_map_tools wpb_home_nav_test.launch");
-        string str = "rosrun waterplus_map_tools wp_nav_test" + name;
+        sleep(3);
+        system("gnome-terminal -x roslaunch navigation_sim_demo amcl_demo.launch");
+        sleep(1);
+        string str = "gnome-terminal -x rosrun waterplus_map_tools wp_nav_test " + name;
         char * strc = new char[strlen(str.c_str()) + 1];
         strcpy(strc, str.c_str());
         int ret = system(strc);
@@ -98,8 +101,10 @@ public:
     //手动控制+自适应蒙特卡洛定位
     void manual_handle() {
         system("gnome-terminal -x roslaunch robot_sim_demo robot_spawn.launch");
-        system("gnome-terminal -x rosrun robot_sim_demo robot_keyboard_teleop.py");
+        sleep(1);
+        //system("gnome-terminal -x rosrun robot_sim_demo robot_keyboard_teleop.py");
         int ret = system("gnome-terminal -x roslaunch navigation_sim_demo amcl_demo.launch");
+        sleep(1);
         if (ret != -1 || ret != 127) {
             cout << "AMCL定位程序已启动" << endl;
         } else {
@@ -116,6 +121,11 @@ public:
 
 int main() {
     Navigation navigation;
-    navigation.change_num2name("2", "ace");
+    //navigation.add_point();
+    //navigation.save_addpoint();
+    navigation.goto_point("rest");
+    //navigation.change_num2name("2", "ace");
+    //navigation.manual_handle();
+
     return 0;
 }

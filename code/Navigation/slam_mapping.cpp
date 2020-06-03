@@ -17,12 +17,16 @@ class Slam {
 public:
     //手动建图
     void create_map() {
-        int ret = system("gnome-terminal -x roslaunch slam_sim_demo gmapping_demo.launch");
-        if (ret != -1 || ret != 127) {
-            cout << "Gmapping建图程序已启动" << endl;
-        } else {
-            throw "command execute error";
-        }
+        system("gnome-terminal -x roslaunch robot_sim_demo robot_spawn.launch");
+        sleep(1);
+        system("gnome-terminal -x rosrun robot_sim_demo robot_keyboard_teleop.py");
+        sleep(5);
+        system("gnome-terminal -x roslaunch wpb_home_tutorials hector_mapping.launch");
+        // if (ret != -1 || ret != 127) {
+        //     cout << "Gmapping建图程序已启动" << endl;
+        // } else {
+        //     throw "command execute error";
+        // }
     }
 
     //存储地图
@@ -67,5 +71,7 @@ public:
 };
 
 int main() {
+    Slam slam;
+    slam.save_map();
     return 0;
 }
