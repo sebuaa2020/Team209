@@ -92,10 +92,10 @@ int main(int argc, char** argv)
 	fp1=fopen("find.txt","r");
 	fscanf(fp1, "%lf %lf %lf\n", &x, &y, &z);
 	printf("%f %f %f\n",speed_x, speed_y, rotate_z);
-	if(x==0 && speed_x!=0){
+	if(x==1 && speed_x!=0){
 		speed_x=0;
 	}
-	if(y==0 && speed_y!=0){
+	if(y==1 && speed_y!=0){
 		speed_y=0;
 	}
 	/*base_cmd.linear.x = 0;
