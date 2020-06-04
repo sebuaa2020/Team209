@@ -87,7 +87,7 @@ int main(int argc, char** argv)
         ros::Subscriber sub = node.subscribe("/scan", 1, laserCallback);
 
 	fp=fopen("state.txt","wt+");
-	fscanf(fp, "%f %f %f\n", &base_cmd.linear.x, &base_cmd.linear.y, &base_cmd.angular.z);
+	fscanf(fp, "%f %f %f\n", &speed_x, &speed_y, &rotate_z);
 	/*base_cmd.linear.x = 0;
 	base_cmd.linear.y = 0;
 	base_cmd.angular.z = 0;*/
