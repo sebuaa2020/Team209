@@ -8,17 +8,17 @@ static double linear_vel = 0.1;
 static double angular_vel = 0.1;
 static int k_vel = 3; //限速
 double speed_x=0,speed_y=0,rotate_z=0,q=0;
-//std::vector<float> ranges;
+std::vector<float> ranges;
 
 
 struct state{
 	int x,y;
 };
 
-/*void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
+void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
 	ranges=msg->ranges;
-}*/
+}
 
 int GetCh()
 {
@@ -69,7 +69,7 @@ void control_base(char c){
 	} 
 	else
 	{
-	   printf(" - 未定义指令 \n");
+	   //printf(" - 未定义指令 \n");
 	}
 	
 }
@@ -84,24 +84,25 @@ int main(int argc, char** argv)
 	ros::Publisher cmd_vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
 	ros::Rate loop_rate(10);
 	geometry_msgs::Twist base_cmd;
-	//ros::NodeHandle node;
-        //ros::Subscriber sub = node.subscribe("/scan", 1, laserCallback);
+	ros::NodeHandle node;
+        ros::Subscriber sub = node.subscribe("/scan", 1, laserCallback);
 
-	fp=fopen("state.txt","wt+");
+	fp=fopen("state.txt","rt+");
+	fscanf(fp, "%lf %lf %lf\n", &speed_x, &speed_y, &rotate_z);
 	fp1=fopen("find.txt","r");
-	fscanf(fp, "%f %f %f\n", &speed_x, &speed_y, &rotate_z);
-	/*base_cmd.linear.x = 0;
-	base_cmd.linear.y = 0;
-	base_cmd.angular.z = 0;*/
-	rewind(fp);
-	fscanf(fp1, "%f %f %f\n", &x, &y, &z);
-	rewind(fp1);
+	fscanf(fp1, "%lf %lf %lf\n", &x, &y, &z);
+	printf("%f %f %f\n",speed_x, speed_y, rotate_z);
 	if(x==0 && speed_x!=0){
 		speed_x=0;
 	}
 	if(y==0 && speed_y!=0){
 		speed_y=0;
 	}
+	/*base_cmd.linear.x = 0;
+	base_cmd.linear.y = 0;
+	base_cmd.angular.z = 0;*/
+	rewind(fp);
+	rewind(fp1);
 	/*printf("键盘控制WPR机器人： \n");
 	printf("w - 向前加速 \n");
 	printf("s - 向后加速 \n");
@@ -113,16 +114,13 @@ int main(int argc, char** argv)
 	printf("x - 退出 \n");
 	printf("------------- \n");*/
 	
-	fclose(fp);
-	remove("state.txt");
-	fp=fopen("state.txt","wt+");
-
 	while(ros::ok())
 	{
-		//ros::spinOnce();
+		ros::spinOnce();
 		//geometry_msgs::Twist base_cmd;
 		char cKey = GetCh();
 		control_base(cKey);
+		printf("%f %f %f\n",speed_x, speed_y, rotate_z);
 		if(q==1){
 			speed_x = 0;
 			speed_y = 0;
@@ -134,6 +132,49 @@ int main(int argc, char** argv)
 			fprintf(fp,"%.2f %.2f %.2f\n",base_cmd.linear.x,base_cmd.linear.y,base_cmd.angular.z);
 			printf("退出！ \n");
 			return 0;
+		}
+		if (ranges.size() == 360) {
+			int flag = 0;
+			for (int i = 150;i < 210;i++) {
+				if (ranges[i] < 0.30) {
+					//printf("检测到障碍物！");
+					if(speed_x > 0)
+						speed_x = 0;
+					break;
+				}
+			}
+			for (int i = 0;i < 30;i++) {
+				if (ranges[i] < 0.30) {
+					//printf("检测到障碍物！");
+					if(speed_x < 0)
+						speed_x = 0;
+					break;
+				}
+			}
+			for (int i = 330;i < 360;i++) {
+				if (ranges[i] < 0.30) {
+					//printf("检测到障碍物！");
+					if(speed_x < 0)
+						speed_x = 0;
+					break;
+				}
+			}
+			for (int i = 240;i < 300;i++) {
+				if (ranges[i] < 0.30) {
+					//printf("检测到障碍物！");
+					if(speed_y > 0)
+						speed_y = 0;
+					break;
+				}
+			}
+			for (int i = 60;i < 120;i++) {
+				if (ranges[i] < 0.30) {
+					//printf("检测到障碍物！");
+					if(speed_y < 0)
+						speed_y = 0;
+					break;
+				}
+			}
 		}
 		if(speed_x > linear_vel*k_vel)
 			speed_x = linear_vel*k_vel;
@@ -152,8 +193,7 @@ int main(int argc, char** argv)
 		base_cmd.angular.z = rotate_z;
 		cmd_vel_pub.publish(base_cmd);
 		fprintf(fp,"%.2f %.2f %.2f\n",base_cmd.linear.x,base_cmd.linear.y,base_cmd.angular.z);
-		rewind(fp);
-		//loop_rate.sleep();
+		loop_rate.sleep();
 	}
 	return 0;
 } 
