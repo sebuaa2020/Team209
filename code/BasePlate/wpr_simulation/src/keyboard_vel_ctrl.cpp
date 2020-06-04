@@ -113,6 +113,10 @@ int main(int argc, char** argv)
 	printf("x - 退出 \n");
 	printf("------------- \n");*/
 	
+	fclose(fp);
+	remove("state.txt");
+	fp=fopen("state.txt","wt+");
+
 	while(ros::ok())
 	{
 		//ros::spinOnce();
