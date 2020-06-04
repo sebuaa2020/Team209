@@ -17,6 +17,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 int main(int argc, char** argv)
 {
 	FILE *fp,*fp1;
+	int x,y,z=0;
 	ros::init(argc, argv, "laser_detect");
 	ros::NodeHandle n;
 	ros::Publisher cmd_vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
@@ -25,7 +26,7 @@ int main(int argc, char** argv)
         ros::Subscriber sub = node.subscribe("/scan", 1, laserCallback);
 
 	double speed_x=0,speed_y=0,rotate_z=0,q=0;
-	fp=fopen("find.txt","wt+");
+	fp=fopen("find.txt","rt+");
 	fp1=fopen("state.txt","r");
 	/*base_cmd.linear.x = 0;
 	base_cmd.linear.y = 0;
@@ -43,7 +44,7 @@ int main(int argc, char** argv)
 				if (ranges[i] < 0.30) {
 					//printf("检测到障碍物！");
 					if(speed_x > 0)
-						speed_x = 0;
+						x = 1;
 					break;
 				}
 			}
@@ -51,7 +52,7 @@ int main(int argc, char** argv)
 				if (ranges[i] < 0.30) {
 					//printf("检测到障碍物！");
 					if(speed_x < 0)
-						speed_x = 0;
+						x = 1;
 					break;
 				}
 			}
@@ -59,7 +60,7 @@ int main(int argc, char** argv)
 				if (ranges[i] < 0.30) {
 					//printf("检测到障碍物！");
 					if(speed_x < 0)
-						speed_x = 0;
+						x = 1;
 					break;
 				}
 			}
@@ -67,7 +68,7 @@ int main(int argc, char** argv)
 				if (ranges[i] < 0.30) {
 					//printf("检测到障碍物！");
 					if(speed_y > 0)
-						speed_y = 0;
+						y = 1;
 					break;
 				}
 			}
@@ -75,12 +76,12 @@ int main(int argc, char** argv)
 				if (ranges[i] < 0.30) {
 					//printf("检测到障碍物！");
 					if(speed_y < 0)
-						speed_y = 0;
+						y = 1;
 					break;
 				}
 			}
 		}
-		fprintf(fp, "%.2f %.2f %.2f\n", speed_x, speed_y, rotate_z);
+		fprintf(fp, "%.2f %.2f %.2f\n", x, y, z);
 		rewind(fp);
 		loop_rate.sleep();
 	}
