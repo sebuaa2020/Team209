@@ -215,8 +215,17 @@ include_directories(
 add_executable(keyboard_vel_ctrl
   src/keyboard_vel_ctrl.cpp
 )
+
+add_executable(laser_detect
+  src/laser_detect.cpp
+)
+
 add_dependencies(keyboard_vel_ctrl ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(keyboard_vel_ctrl
   ${catkin_LIBRARIES}
 )
 
+add_dependencies(laser_detect ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(laser_detect
+  ${catkin_LIBRARIES}
+)
