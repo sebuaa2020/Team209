@@ -17,7 +17,7 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 int main(int argc, char** argv)
 {
 	FILE *fp,*fp1;
-	int x,y,z=0;
+	int x=0,y=0,z=0;
 	ros::init(argc, argv, "laser_detect");
 	ros::NodeHandle n;
 	ros::Publisher cmd_vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
@@ -83,6 +83,9 @@ int main(int argc, char** argv)
 		}
 		fprintf(fp, "%.2f %.2f %.2f\n", x, y, z);
 		rewind(fp);
+		x=0;
+		y=0;
+		z=0;
 		loop_rate.sleep();
 	}
 	return 0;
