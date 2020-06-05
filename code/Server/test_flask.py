@@ -2,6 +2,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 application = Flask(__name__, static_url_path='')
 import sqlite3
+import os
 
 
 @application.route('/about.html', methods=['POST', 'GET'])
@@ -166,8 +167,44 @@ def relearn_more():
 @application.route('/byhand.html', methods=['POST', 'GET'])
 def byhand():
     if request.method == "POST":
+        # 这里是命令行
         key = dict(request.form)
         direct = list(key.keys())[0]
+        if direct == "ahead":
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./ahead.sh")
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./ahead.sh")
+        elif direct == "back":
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./back.sh")
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./back.sh")
+        elif direct == "left":
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./left.sh")
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./left.sh")
+        elif direct == "right":
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./right.sh")
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./right.sh")
+        elif direct == "right_turn":
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./right_turn.sh")
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./right_turn.sh")
+        elif direct == "left_turn":
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./left_turn.sh")
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./left_turn.sh")
+        elif direct == "stop":
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./stop.sh")
+            os.chdir("/home/dell/demo2_ws/")
+            os.system("gnome-terminal -x bash ./stop.sh")
         print(direct)
         return render_template('byhand.html')
     return render_template('byhand.html')
@@ -176,6 +213,70 @@ def byhand():
 @application.route('/static/byhand.html', methods=['POST', 'GET'])
 def rebyhand():
     return redirect(url_for("byhand"))
+
+
+@application.route('/voice_in.html', methods=['POST', 'GET'])
+def voice_in():
+    return render_template('voice_in.html')
+
+
+@application.route('/static/voice_in.html', methods=['POST', 'GET'])
+def revoice_in():
+    return redirect(url_for("voice_in"))
+
+
+@application.route('/slam.html', methods=['POST', 'GET'])
+def slam():
+    if request.method == "POST":
+        # 这里是命令行
+        key = dict(request.form)
+        direct = list(key.keys())[0]
+        if direct == "start":
+            os.chdir("/home/dell/demo_ws/src/excute/")
+            os.system("./create_map")
+        elif direct == "save":
+            os.chdir("/home/dell/demo_ws/src/excute/")
+            os.system("./save_map")
+        return render_template('slam.html')
+    return render_template('slam.html')
+
+
+@application.route('/static/slam.html', methods=['POST', 'GET'])
+def reslam():
+    return redirect(url_for("slam"))
+
+
+@application.route('/nav.html', methods=['POST', 'GET'])
+def nav():
+    if request.method == "POST":
+        # 这里是命令行
+        key = dict(request.form)
+        direct = list(key.keys())[0]
+        if direct == "instant":
+	        os.chdir("/home/dell/demo_ws/src/excute/")
+	        os.system("./manual_handle")
+        elif direct == "add":
+            os.chdir("/home/dell/demo_ws/src/excute/")
+            os.system("./add_point")
+        elif direct == "save":
+            os.chdir("/home/dell/demo_ws/src/excute/")
+            os.system("./save_point")
+        elif direct == "board":
+            os.chdir("/home/dell/demo_ws/src/excute/")
+            os.system("./display_board")
+        elif direct == "hall":
+            os.chdir("/home/dell/demo_ws/src/excute/")
+            os.system("./hall")
+        elif direct == "rest":
+            os.chdir("/home/dell/demo_ws/src/excute/")
+            os.system("./rest")
+        return render_template('nav.html')
+    return render_template('nav.html')
+
+
+@application.route('/static/nav.html', methods=['POST', 'GET'])
+def renav():
+    return redirect(url_for("nav"))
 
 
 if __name__ == "__main__":
