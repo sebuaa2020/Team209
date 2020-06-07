@@ -77,8 +77,7 @@ void control_base(char c){
 
 int main(int argc, char** argv)
 {
-	FILE *fp,*fp1;
-	double x,y,z;
+	FILE *fp;
 	ros::init(argc, argv, "keyboard_vel_ctrl");
 	ros::NodeHandle n;
 	ros::Publisher cmd_vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
@@ -89,20 +88,11 @@ int main(int argc, char** argv)
 
 	fp=fopen("state.txt","rt+");
 	fscanf(fp, "%lf %lf %lf\n", &speed_x, &speed_y, &rotate_z);
-	fp1=fopen("find.txt","r");
-	fscanf(fp1, "%lf %lf %lf\n", &x, &y, &z);
 	printf("%f %f %f\n",speed_x, speed_y, rotate_z);
-	if(x==1 && speed_x!=0){
-		speed_x=0;
-	}
-	if(y==1 && speed_y!=0){
-		speed_y=0;
-	}
 	/*base_cmd.linear.x = 0;
 	base_cmd.linear.y = 0;
 	base_cmd.angular.z = 0;*/
 	rewind(fp);
-	rewind(fp1);
 	/*printf("键盘控制WPR机器人： \n");
 	printf("w - 向前加速 \n");
 	printf("s - 向后加速 \n");
