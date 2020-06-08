@@ -44,6 +44,10 @@
 
 首先确保请安装好相应的环境，包括python3.7、flask等。
 
+在该链接中下载训练好的语音识别模型放在根目录下
+
+ https://bhpan.buaa.edu.cn:443/link/AD74A8735D1E2A072D5B7767EFEE41E7
+
 然后执行server文件夹中的test_flask.py文件。
 
 如果看到编译成功的显示，说明可以正常使用了。
