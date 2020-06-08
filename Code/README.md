@@ -21,7 +21,7 @@ source ./devel/setup.bash
 roslaunch robot_sim_demo robot_spawn.launch
 ```
 
-![](https://github.com/sebuaa2020/Team209/tree/master/Code/images/gazebo.png)
+![](https://github.com/sebuaa2020/Team209/blob/master/Code/images/gazebo.png)
 
 ## 移动控制
 
@@ -50,7 +50,7 @@ roslaunch slam_sim_demo gmapping_demo.launch
 roslaunch slam_sim_demo view_slam.launch
 ```
 
-![](https://github.com/sebuaa2020/Team209/tree/master/Code/images/slam_mapping.png)
+![](https://github.com/sebuaa2020/Team209/blob/master/Code/images/slam_mapping.png)
 
 运行键盘控制程序，可控制小车在地图中建图 
 
@@ -80,7 +80,7 @@ roslaunch navigation_sim_demo amcl_demo.launch
 roslaunch navigation_sim_demo view_navigation.launch
 ```
 
-![](https://github.com/sebuaa2020/Team209/tree/master/Code/images/maunal_nav.png)
+![](https://github.com/sebuaa2020/Team209/blob/master/Code/images/maunal_nav.png)
 
 ### 固定导航点
 
@@ -90,7 +90,7 @@ roslaunch navigation_sim_demo view_navigation.launch
 roslaunch waterplus_map_tools add_waypoint.launch
 ```
 
-![](https://github.com/sebuaa2020/Team209/tree/master/Code/images/add_point.png)
+![](https://github.com/sebuaa2020/Team209/blob/master/Code/images/add_point.png)
 
 保存固定导航点，在根目录下可以看到保存的waypoints.xml文件 
 
@@ -98,7 +98,7 @@ roslaunch waterplus_map_tools add_waypoint.launch
 roslaunch waterplus_map_tools add_waypoint.launch
 ```
 
-![](https://github.com/sebuaa2020/Team209/tree/master/Code/images/waypoints.png)
+![](https://github.com/sebuaa2020/Team209/blob/master/Code/images/waypoints.png)
 
 修改路径点名称，用nano或者vim打开waypoint.xml文件，并修改节点的name部分
 
@@ -116,8 +116,7 @@ vim waypoint.xml
 ```
 roslaunch detect_209 obj_detect.launch
 ```
-
-![](https://github.com/sebuaa2020/Team209/tree/master/Code/images/object_detect.png)
+<img src="https://github.com/sebuaa2020/Team209/blob/master/Code/images/object_detect.png" alt="detect" style="zoom:5%;" />
 
 保存目标识别信息
 
