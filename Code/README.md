@@ -134,7 +134,7 @@ rostopic echo -c /recognized_object_array | grep -m1 -A8 position >> the_path_yo
 roslaunch detect_209 grab_action.launch
 ```
 
-![1591617340573](F:\软件工程\Code\images\machine_arm.png)
+<img src="https://github.com/sebuaa2020/Team209/blob/master/Code/images/machine_arm.png" alt="arm" style="zoom:5%;" />
 
 ## 语音控制
 
