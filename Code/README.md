@@ -21,7 +21,7 @@ source ./devel/setup.bash
 roslaunch robot_sim_demo robot_spawn.launch
 ```
 
-![1591604110530](C:\Users\DELL\AppData\Roaming\Typora\typora-user-images\1591604110530.png)
+![1591604110530](https://github.com/sebuaa2020/Team209/tree/master/Code/images/gazebo.png)
 
 ## 移动控制
 
@@ -50,7 +50,7 @@ roslaunch slam_sim_demo gmapping_demo.launch
 roslaunch slam_sim_demo view_slam.launch
 ```
 
-![1591604328727](C:\Users\DELL\AppData\Roaming\Typora\typora-user-images\1591604328727.png)
+![1591604328727](https://github.com/sebuaa2020/Team209/tree/master/Code/images/slam_mapping.png)
 
 运行键盘控制程序，可控制小车在地图中建图 
 
@@ -80,7 +80,7 @@ roslaunch navigation_sim_demo amcl_demo.launch
 roslaunch navigation_sim_demo view_navigation.launch
 ```
 
-![1591604499358](C:\Users\DELL\AppData\Roaming\Typora\typora-user-images\1591604499358.png)
+![1591604499358](https://github.com/sebuaa2020/Team209/tree/master/Code/images/maunal_nav.png)
 
 ### 固定导航点
 
@@ -90,7 +90,7 @@ roslaunch navigation_sim_demo view_navigation.launch
 roslaunch waterplus_map_tools add_waypoint.launch
 ```
 
-![1591604559950](C:\Users\DELL\AppData\Roaming\Typora\typora-user-images\1591604559950.png)
+![1591604559950](https://github.com/sebuaa2020/Team209/tree/master/Code/images/add_point.png)
 
 保存固定导航点，在根目录下可以看到保存的waypoints.xml文件 
 
@@ -98,7 +98,7 @@ roslaunch waterplus_map_tools add_waypoint.launch
 roslaunch waterplus_map_tools add_waypoint.launch
 ```
 
-![1591604598866](C:\Users\DELL\AppData\Roaming\Typora\typora-user-images\1591604598866.png)
+![1591604598866](https://github.com/sebuaa2020/Team209/tree/master/Code/images/waypoints.png)
 
 修改路径点名称，用nano或者vim打开waypoint.xml文件，并修改节点的name部分
 
@@ -117,7 +117,7 @@ vim waypoint.xml
 roslaunch detect_209 obj_detect.launch
 ```
 
-![1591605748620](C:\Users\DELL\AppData\Roaming\Typora\typora-user-images\1591605748620.png)
+![1591605748620](https://github.com/sebuaa2020/Team209/tree/master/Code/images/object_detect.png)
 
 保存目标识别信息
 
