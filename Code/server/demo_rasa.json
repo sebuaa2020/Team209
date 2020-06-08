@@ -1,0 +1,54 @@
+{
+  "rasa_nlu_data": {
+    "regex_features": [
+      {
+        "name": "zipcode",
+        "pattern": "[0-9]{5}"
+      }
+    ],
+    "entity_synonyms": [
+    ],
+    "common_examples": [
+      {
+        "text": "前进。",
+        "intent": "ahead",
+        "entities": []
+       },
+      {
+        "text": "向前进。",
+        "intent": "ahead",
+        "entities": []
+       },
+      {
+        "text": "后退。",
+        "intent": "back",
+        "entities": []
+       },
+      {
+        "text": "向后退。",
+        "intent": "back",
+        "entities": []
+       },
+      {
+        "text": "向左转。",
+        "intent": "left_turn",
+        "entities": []
+       },
+      {
+        "text": "向右转。",
+        "intent": "right_turn",
+        "entities": []
+       },
+      {
+        "text": "停下来。",
+        "intent": "stop",
+        "entities": []
+       },
+      {
+        "text": "停下。",
+        "intent": "stop",
+        "entities": []
+       }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300,200' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+<script src="js/jquery.min.js"></script>
+<title>Felicity</title>
+</head>
+
+<body>
+	<div class="header">
+    	<div class="container">
+        	<div class="logo">
+                	<h1><a href="#">110报案系统</a></h1>
+                </div>
+                <div class="menu">
+                	<label for="show-menu" class="show-menu"><i class="icon-reorder open1" style="float: right;"></i></label>
+                	<ul class="nav" id="menu">
+                    	<li><a href="./contact.html">警情上报</a></li>
+						<li><a href="./recommend.html">地图查看</a></li>
+                        <li><a href="./regular.html">案情整理</a></li>
+                        <li><a href="./login.html">退出登录</a></li>
+                    </ul>
+                </div>
+          </div>
+    </div>
+
+    <div class="about">
+    	<div class="container">
+        	<div class="title-section">
+        		<h3>About</h3>
+            </div>
+            <div class="about-section">
+            	<div class="about-img">
+                	<img src="images/image2.png"/>
+                </div>
+            <div class="about-text">
+                <p>这里是来自北京航空航天大学的踢皮球小组</p>
+                <p>成员包括刘泽华、聂志捷、杨迈、莫策和吴天昊</p>
+                <p>不知道写什么就先随便写一点</p>
+            </div>
+           </div>
+        </div>
+    </div>
+
+    <div class="footer">
+    	<div class="container">
+        	<div class="credit-social">
+                <div class="social">
+                	<ul class="socialmedia">
+                		<li><a href="./about.html">关于我们</a></li>
+                        <li><a href="./index.html">联系我们</a></li>
+            		</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script>
+	$(document).ready(function(){ 
+			$(".open1").click(function(){
+					$(".nav").slideToggle();
+				})
+				})
+		$(window).resize(function(){
+        if ( $(window).width() >= 640 ){$('.nav').css('display','block');}
+		else{$('.nav').css('display','none');}
+      });
+		
+		
+</script>
+</body>
+</html>
