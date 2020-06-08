@@ -126,6 +126,16 @@ rostopic echo -c /recognized_object_array | grep -m1 confidence >> the_path_you_
 rostopic echo -c /recognized_object_array | grep -m1 -A8 position >> the_path_you_want
 ```
 
+## 机械臂控制
+
+启动rivz可视化工具，通过任何使机器人移动的方式使机器人朝向目标
+
+```
+roslaunch detect_209 grab_action.launch
+```
+
+![1591617340573](F:\软件工程\Code\images\machine_arm.png)
+
 ## 语音控制
 
 语音识别命令无法在代码中独立开启，请结合前端体验。
